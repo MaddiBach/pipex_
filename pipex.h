@@ -21,3 +21,15 @@ struct  s_cmd
     int     pip[2];
 	pid_t   *pid;
 };
+
+
+bool	check_infile(char *filename);
+bool	check_outfile(char *filename);
+int		ft_open_if(char *in);
+int		ft_open_of(char *out);
+bool	cmd_in_workdir(char *cmd);
+char	*check_and_find(char *cmd, char **envp);
+char	**find_path(char **envp);
+char	*is_in_path(char *cmd, char **envp);
+char	*check_bin_in_path(char **path);
+void	fill_cmd(t_cmd cmd,char *envp, char *arg);
