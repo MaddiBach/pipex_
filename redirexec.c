@@ -30,7 +30,10 @@ pid_t   ft_exec(t_cmd cmd, char **envp, int in, int out)
         close_fd_couple(cmd.pip);
         execret = execve(cmd.bin, cmd.args, envp);
         if (execret == -1)
+        {
            perror("exec");
+           exit(1);
+        }
     }
     return (cmd.pid);
 }
