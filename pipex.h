@@ -22,14 +22,21 @@ struct  s_cmd
 	pid_t   *pid;
 };
 
-
+// parsing.c
 bool	check_infile(char *filename);
 bool	check_outfile(char *filename);
 int		ft_open_if(char *in);
 int		ft_open_of(char *out);
+
+// files.c
 bool	cmd_in_workdir(char *cmd);
 char	*check_and_find(char *cmd, char **envp);
 char	**find_path(char **envp);
 char	*is_in_path(char *cmd, char **envp);
 char	*check_bin_in_path(char **path);
 void	fill_cmd(t_cmd cmd,char *envp, char *arg);
+
+// redirexec.c
+pid_t   ft_exec(t_cmd cmd, char **envp, int in, int out);
+void	ft_stdin_redir(int in);
+void	ft_stdout_redir(int out);
