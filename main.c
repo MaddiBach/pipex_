@@ -15,7 +15,7 @@ int    main(int ac, char **av, char **envp)
     fill_cmd(cmd[SECOND], envp, av[3]);
     fd[INFILE] = ft_open_if(av[1]);
     cmd[FIRST].pid = ft_exec(cmd[FIRST], envp, fd[INFILE], cmd[FIRST].pip[WRITE]);
-    cmd[SECOND].pip = cmd[FIRST].pip;
+    cmd[SECOND].pip[READ] = cmd[FIRST].pip[READ];
     fd[OUTFILE] = ft_open_of(av[4]);
     cmd[SECOND].pid = ft_exec(cmd[SECOND], envp, cmd[SECOND].pip[READ], fd[OUTFILE]);
     waitpid(cmd[FIRST].pid, NULL, 0);

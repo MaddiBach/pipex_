@@ -35,7 +35,7 @@ char	*is_in_path(char *cmd, char **envp)
 	path = find_path(envp);
 	if (path == NULL)
 		return (NULL);
-	if (!join_bin_to_path(cmd, path))
+	if (!ft_join_bin(path, cmd))
 		return (NULL);
 	binpath = check_bin_in_path(path);
 	if (!binpath)
@@ -65,7 +65,7 @@ char	*check_bin_in_path(char **path)
 	return (NULL);
 }
 
-void	fill_cmd(t_cmd cmd,char *envp, char *arg)
+void	fill_cmd(t_cmd cmd,char **envp, char *arg)
 {
 	cmd.bin = check_and_find(arg, envp);
 	cmd.args = ft_split(arg, ' ');

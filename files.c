@@ -18,7 +18,7 @@ int		ft_open_if(char *in)
 
 	ret = open(in, S_IRUSR);
 	if (ret == -1)
-		handle_error();
+		perror("infile open");
 	return (ret);
 }
 
@@ -28,7 +28,7 @@ int		ft_open_of(char *out)
 
 	ret = open(out, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	if (ret == -1)
-		handle_error();
+		perror("outfile open");
 	return (ret);
 }
 

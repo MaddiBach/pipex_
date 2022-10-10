@@ -21,7 +21,7 @@ char **ft_join_bin(char **path, char *bin)
     ret = malloc(sizeof(char **) * size);
     while (path[i])
     {
-        ret[i] = ft_slash_join(path[i]);
+        ret[i] = ft_join_to_path(path[i], bin);
         i++ ;
     }
 
