@@ -13,11 +13,12 @@ char    *ft_join_to_path(char *path, char *bin)
 
 char **ft_join_bin(char **path, char *bin)
 {
-    int i ;
-    
+    int     i;
+    int     size;
+    char    **ret;
     i = 0 ;
     size = ft_strllen(path);
-    ret = malloc(sizeof(char **) * size)
+    ret = malloc(sizeof(char **) * size);
     while (path[i])
     {
         ret[i] = ft_slash_join(path[i]);
