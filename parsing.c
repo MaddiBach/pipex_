@@ -62,10 +62,10 @@ char	*is_in_path(char *cmd, char **envp)
 	binpath = check_bin_in_path(path);
 	if (!binpath)
     {
-        free_tab(path);
+        free_tab(path, ft_strllen(path));
 		return (NULL);
     }
-  free_tab(path);
+  free_tab(path, ft_strllen(path));
   return(binpath);
 }
 

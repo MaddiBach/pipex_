@@ -1,32 +1,45 @@
 #include "pipex.h"
 
-int    main(int ac, char **av, char **envp)
+int main (int argc, char ** argv, char **envp) 
 {
-    t_cmd first_cmd;
-    t_cmd second_cmd;
-    int fd[2];
-    int pip[2];
-    int ret;
+    int     i;
+    int     fd[2];
+    int     pd[2];
+    pid_t   pid;
 
-    ret = pipe(pip);
-    if (ret == -1)
+    i = 2;
+    fd[INFILE] = ft_open_if(argv[1]);
+    if (!fd[INFILE])
+        ft_stdin_redir(fd[INFILE]);
+    else
     {
-        perror("pipe fail");
+        i = 3;
+        pipe(pd);
     }
-    first_cmd = fill_cmd(envp, av[2]);
-    second_cmd = fill_cmd(envp, av[3]);
-    ret = check_infile(av[1]);
-   // if (ret == -1)
-   // {
-   //     perror("infile");
-   //     return(0);
-   // }
-    fd[INFILE] = ft_open_if(av[1]);
-    first_cmd.pid = ft_exec(first_cmd, envp, fd[INFILE], pip[WRITE]);
-    fd[OUTFILE] = ft_open_of(av[4]);
-    second_cmd.pid = ft_exec(second_cmd, envp, pip[READ], fd[OUTFILE]);
-    waitpid(first_cmd.pid, NULL, 0);
-    waitpid(second_cmd.pid, NULL, 0);
-    close_fd_couple(pip);
+
+
+
+
+    while(i < argc - 2)
+    {
+        pipe(pd);
+        pid = fork();
+        if (!pid) 
+        {
+            ft_stdout_redir(pd[WRITE]);
+            close_fd_couple(pd); 
+            execve(check_and_find(argv[i], envp), ft_split(argv[i], ' '), envp);
+            perror("exec");
+        }
+        dup2(pd[0], 0);
+        close_fd_couple(pd);     
+    }
+    fd[OUTFILE] = ft_open_of(argv[argc - 1]);
+    ft_stdin_redir(pd[READ]);
+    ft_stdout_redir(fd[OUTFILE]);
+    close_fd_couple(pd);
     close_fd_couple(fd);
+    waitpid(-1, NULL, 0);
+    execve(check_and_find(argv[i], envp), ft_split(argv[i], ' '), envp);
+    perror("exec");
 }

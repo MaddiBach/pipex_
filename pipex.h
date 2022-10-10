@@ -49,7 +49,8 @@ void	ft_stdout_redir(int out);
 char    *ft_join_to_path(char *path, char *bin);
 char **ft_join_bin(char **path, char *bin);
 int    ft_strllen(char **str);
-void	free_tab(char **tab);
+void	free_tab(char **tab, int size);
 void    close_fd_couple(int couple[2]);
+
 
 #endif
