@@ -35,7 +35,8 @@ char	*is_in_path(char *cmd, char **envp)
 	path = find_path(envp);
 	if (path == NULL)
 		return (NULL);
-	if (!ft_join_bin(path, cmd))
+    path = ft_join_bin(path, cmd);
+	if (path == NULL)
 		return (NULL);
 	binpath = check_bin_in_path(path);
 	if (!binpath)
