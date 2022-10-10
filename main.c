@@ -11,8 +11,9 @@ int    main(int ac, char **av, char **envp)
     {
         perror("pipe fail");
     }
-    fill_cmd(cmd[FIRST], envp, av[2]);
-    fill_cmd(cmd[SECOND], envp, av[3]);
+    cmd[FIRST] = fill_cmd(cmd[FIRST], envp, av[2]);
+    cmd[SECOND] = fill_cmd(cmd[SECOND], envp, av[3]);
+    printf("command :%s\n", cmd[FIRST].bin);
     fd[INFILE] = ft_open_if(av[1]);
     cmd[FIRST].pid = ft_exec(cmd[FIRST], envp, fd[INFILE], cmd[FIRST].pip[WRITE]);
     cmd[SECOND].pip[READ] = cmd[FIRST].pip[READ];

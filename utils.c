@@ -7,7 +7,7 @@ char    *ft_join_to_path(char *path, char *bin)
 
     tmp = ft_strjoin(path, "/");
     ret = ft_strjoin(tmp, bin);
-    free(tmp);
+    //free(tmp);
     return (ret);
 }
 
@@ -44,10 +44,10 @@ void	free_tab(char **tab)
 {
 	while (*tab)
 	{
-		free(*tab);
+		//free(*tab);
 		tab++;
 	}
-	free(tab);
+	//free(tab);
 }
 
 void    close_fd_couple(int couple[2])

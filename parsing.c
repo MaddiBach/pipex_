@@ -65,8 +65,9 @@ char	*check_bin_in_path(char **path)
 	return (NULL);
 }
 
-void	fill_cmd(t_cmd cmd,char **envp, char *arg)
+t_cmd	fill_cmd(t_cmd cmd,char **envp, char *arg)
 {
 	cmd.bin = check_and_find(arg, envp);
 	cmd.args = ft_split(arg, ' ');
+    return (cmd);
 }
