@@ -40,3 +40,10 @@ void	fill_cmd(t_cmd cmd,char *envp, char *arg);
 pid_t   ft_exec(t_cmd cmd, char **envp, int in, int out);
 void	ft_stdin_redir(int in);
 void	ft_stdout_redir(int out);
+
+// utils.c
+char    *ft_join_to_path(char *path, char *bin);
+char **ft_join_bin(char **path, char *bin);
+int    ft_strllen(char **str);
+void	free_tab(char **tab);
+void    close_fd_couple(int couple[2]);
