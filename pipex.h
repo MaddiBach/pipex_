@@ -31,7 +31,7 @@ bool	check_infile(char *filename);
 bool	check_outfile(char *filename);
 int		ft_open_if(char *in);
 int		ft_open_of(char *out);
-t_cmd	fill_cmd(t_cmd cmd,char **envp, char *arg);
+t_cmd	fill_cmd(char **envp, char *arg);
 
 // files.c
 bool	cmd_in_workdir(char *cmd);

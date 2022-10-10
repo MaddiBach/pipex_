@@ -6,7 +6,7 @@ void	ft_stdout_redir(int out)
 
 	ret = dup2(out, STDOUT_FILENO);
 	if (ret == -1)
-		printf("\ndup out fail\n");
+		perror("stdin redir");
 }
 
 void	ft_stdin_redir(int in)
@@ -15,7 +15,7 @@ void	ft_stdin_redir(int in)
 
 	ret = dup2(in, STDIN_FILENO);
 	if (ret == -1)
-		printf("\ndup in fail\n");
+		perror("stdout redir");
 }
 
 pid_t   ft_exec(t_cmd cmd, char **envp, int in, int out)
